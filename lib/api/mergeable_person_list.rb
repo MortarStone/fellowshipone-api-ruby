@@ -1,6 +1,6 @@
 module FellowshipOne
 
-  class MergedPersonList
+  class MergeablePersonList
 
     include Enumerable
 
@@ -10,20 +10,14 @@ module FellowshipOne
     # range is specified, and load them into a MergedPersonList.
     #
     def self.load_all(alpha="aa",omega="zz")
-      mpl = MergedPersonList.new
+      mpl = MergeablePersonList.new
 
       alpha.upto(omega) do |x|
         person_list = Search.search_for_person_by_name(x)
-        if pl.nil?
-          # puts "Creating new! " + x.to_s unless person_list.empty?
-          pl = person_list unless person_list.empty?
-        else
-          # puts "Merging! " + x.to_s unless person_list.empty?
-          pl.merge(person_list) unless person_list.empty?
-        end
+        mpl.add(person_list)
       end
 
-      pl
+      mpl
     end
 
 
@@ -96,5 +90,4 @@ module FellowshipOne
 
   end
     
-  
 end
