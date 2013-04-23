@@ -24,12 +24,10 @@ module FellowshipOne
     #
     def initialize(json)
       @json_data = json["results"] || json #for flexibility due to differing F1 formats
-      
-      @count = @json_data['@count']
-      @page_number = @json_data['@pageNumber']
-      @total_records = @json_data['@totalRecords']
-      @additional_pages = @json_data['@additionalPages']
-      
+      @count = @json_data['@count'].to_i
+      @page_number = @json_data['@pageNumber'].to_i
+      @total_records = @json_data['@totalRecords'].to_i
+      @additional_pages = @json_data['@additionalPages'].to_i
     end
     
     
