@@ -4,10 +4,9 @@ module FellowshipOne
 
     # Constructor.
     #
-    # @param page The page number to get. Default is 1.
+    # @param page (optional) The page number to get.
     # @param options A hash of options for requesting data from the server.
-    # @param [CacheAdapter] cacher (optional) The cacher to be used to cache data.
-    def initialize(options = {}, cacher = nil)
+    def initialize(options = {})
       page = options[:page] || 1
       filter = options[:filter]
 

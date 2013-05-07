@@ -56,8 +56,7 @@ module FellowshipOne
 			                     :old_household_id,
 			                     :attributes,
 			                     :addresses,
-			                     :communications
-			                   ]
+			                     :communications]
     end
     
   end

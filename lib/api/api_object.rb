@@ -19,7 +19,7 @@ module FellowshipOne
       @__f1_attributes
     end
 
-    # Initializes the current object from the JSON data that was loaded into the Hash
+    # Initializes the current object from the JSON data that was loaded into the Hash.
     #
     # @param object_attributes A Hash of values to load into the current object.
     def initialize_from_json_object(object_attributes)
@@ -32,10 +32,7 @@ module FellowshipOne
           end
 
           if respond_to?(method_to_call)
-            # puts "Sending :=> ".green + method_to_call.to_s + value.to_s
             self.send(method_to_call, value) 
-          else
-            # puts "Missing :=> ".red + method_to_call.to_s  # Show the missing methods
           end
           
         end

@@ -33,19 +33,19 @@ module FellowshipOne
 										 :last_updated_date,
 										 :last_updated_by_person
 
-    # Loads the donation by the specified ID.
+    # Loads the contribution by the specified ID.
     #
-    # @param donation_id The ID of the donation to load.
+    # @param contribution_id The ID of the contribution to load.
     #
-    # Returns a new {Donation} object.
+    # Returns a new {contribution} object.
     def self.load_by_id(contribution_id)
-      contribution_reader = ContributionReader.new(contribution_id)
+      reader = ContributionReader.new(contribution_id)
       self.new(contribution_reader.load_feed['contributionReceipt'])
     end
 
     # Constructor.
     #
-    # @param reader (optional) The object that has the data. This can be a {DonationReader} or Hash object.
+    # @param reader (optional) The object that has the data. This can be a {ContributionReader} or Hash object.
     def initialize(reader = nil)
       if reader.is_a?(ContributionReader)
         initialize_from_json_object(reader.load_feed)
