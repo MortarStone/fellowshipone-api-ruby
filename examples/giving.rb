@@ -13,22 +13,19 @@ include F1Keys
 
 FellowshipOne::Api.connect(CHURCH_CODE, CONSUMER_KEY, CONSUMER_SECRET, OAUTH_TOKEN, OAUTH_SECRET, IS_PRODUCTION)
 
-
-contribution_list = FellowshipOne::Search.search_for_contributions_by_date("2013-04-01","2013-04-21")
+start_date = "2013-04-01"
+end_date = "2013-04-21"
+contribution_list = FellowshipOne::Search.search_for_contributions_by_date(start_date,end_date)
 
 # this needs to be moved into something else... 
+donation_list = []
 contribution_list.each do |cl|
-		print FellowshipOne::Household.load_by_id( cl.household_id ).household_name
-		print " => "
-		puts cl.amount
+	date = Date.parse(cl.received_date).to_s
+	name = FellowshipOne::Household.load_by_id( cl.household_id ).household_name
+	amount = cl.amount
+	id = cl.household_id
+
+	donation_list << {date: date, amount: amount, household_name: name, household_id: id}
 end
 
-# receipts["results"]["contributionReceipt"].each do |contributions|
-#   cont.initialize_from_json_object(contributions)
-#   name = peep.return_results_by_name(peep.get_houshold_members(cont.household["@id"]))
-#   fmt_name = name.join(", ")
-#   fmt_date = Date.parse(cont.received_date).to_s
-#   fmt_amount = cont.amount
-#   print fmt_date + ": " + fmt_name + " ==> " 
-#   puts "%.2f" % fmt_amount
-# end
+puts donation_list.inspect
