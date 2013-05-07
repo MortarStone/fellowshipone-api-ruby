@@ -13,9 +13,8 @@ module FellowshipOne
       response = FellowshipOne::api_request(:get, @url_data_path, @url_data_params)
       data = JSON.parse(response.body)
       @headers = response.headers
-      @cacher.save_data(@class_key, data) unless @cacher.nil?
 
-      return data
+      return data.keys == ['results'] ? data['results'] : data
     end
 
   end

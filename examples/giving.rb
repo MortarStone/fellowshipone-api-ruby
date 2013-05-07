@@ -5,6 +5,8 @@
 # @authors Wes Hays <weshays@gbdev.com>
 # ******************************************* 
 
+require 'debugger'
+
 require File.dirname(__FILE__) + '/../lib/fellowship_one.rb'
 
 require File.dirname(__FILE__) + '/f1_keys.rb'
@@ -19,6 +21,22 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
 start_date = "2013-04-01"
 end_date = "2013-04-21"
 contribution_list = FellowshipOne::Search.search_for_contributions_by_date(start_date, end_date)
+
+contribution_list.each do |contribution|
+  contribution.household_id
+  contribution.amount_cents
+  contribution.received_date
+  contribution.fund['name']
+
+  donor_info = FellowshipOne::Household.load_by_id( contribution.household_id )
+  donor_info.household_name
+
+  people = FellowshipOne::Search.search_for_household_by_name( donor_info.household_name )
+
+debugger
+asdf=234  
+end
+
 
 # # this needs to be moved into something else... 
 # donation_list = []
