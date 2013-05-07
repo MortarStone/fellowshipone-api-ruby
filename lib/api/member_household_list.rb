@@ -1,10 +1,8 @@
 module FellowshipOne
 
-  class HouseholdList
+  class MemberHouseholdList
 
     include Enumerable
-
-    attr_reader :count, :page_number, :total_records, :additional_pages
 
     # Constructor.
     #
@@ -15,14 +13,11 @@ module FellowshipOne
     # :reader - (optional) The Reader to use to load the data.
     # :household_id - The household ID to pull the info for.
     def initialize(options)
-      #options[:page] ||= 1
-      reader = options[:reader] || FellowshipOne::HouseholdListReader.new(options)
-      @json_data = reader.load_feed
+      raise 'Household ID not specified' if options[:household_id].nil?
 
-      @count = @json_data['@count'].to_i
-      @page_number = @json_data['@pageNumber'].to_i
-      @total_records = @json_data['@totalRecords'].to_i
-      @additional_pages = @json_data['@additionalPages'].to_i
+      #options[:page] ||= 1
+      reader = options[:reader] || FellowshipOne::MemberHouseholdListReader.new(options)
+      @json_data = reader.load_feed
     end
 
 
@@ -33,17 +28,17 @@ module FellowshipOne
     #
     # @return [User]
     def [](index)
-      Household.new( @json_data['household'][index] ) if @json_data['household'] and @json_data['household'][index]
+      Person.new( @json_data['people']['person'][index] ) if @json_data['people']['person'] and @json_data['people']['person'][index]
     end
 
     def all_names
-      return [] unless @json_data['household']
-      @json_data['household'].collect { |household| household['householdName'] }
+      return [] unless @json_data['people']
+      @json_data['people']['person'].collect { |person| [person['firstName'], person['lastName']].join(' ') }
     end
 
     # This method is needed for Enumerable.
     def each &block
-      @json_data['household'].each{ |household| yield( Household.new(household) )}
+      @json_data['people']['person'].each{ |person| yield( Person.new(person) )}
     end
   
     # Alias the count method
@@ -61,14 +56,14 @@ module FellowshipOne
     #
     # @return An array of household ids.
     def ids
-      (@json_data['household'].collect { |household| household['@id'] }).uniq
+      @json_data['people']['person'].collect { |person| person['@id'] }
     end
 
     # Access to the raw JSON data.  This method is needed for merging lists.
     #
     # @returns Raw JSON data.
     def raw_data
-      @json_data
+      @json_data['people']['person']
     end
 
 

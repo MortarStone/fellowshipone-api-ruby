@@ -1,6 +1,6 @@
 module FellowshipOne
 
-  class HouseholdListReader < ApiReader
+  class MemberHouseholdListReader < ApiReader
 
     # Constructor.
     #
