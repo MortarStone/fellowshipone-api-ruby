@@ -32,19 +32,16 @@ contribution_list.each do |contribution|
   people = FellowshipOne::MemberHouseholdList.new({:household_id => contribution.household_id})
 
   people.each do |person|
+    puts "---------------------"
     puts person.first_name
-   
-    # Info to use
-    # person.id 
-    # person.household_id
-    # person.first_name
-    # person.last_name
-    # person.gender
-    # person.date_of_birth
-    # person.marital_status
-    # person.addresses
-    # person.communications #phone numbers
-
+    puts person.id 
+    puts person.household_id
+    puts person.first_name
+    puts person.last_name
+    puts person.gender
+    puts person.date_of_birth
+    puts person.marital_status
+    puts "---------------------"
   end
 
 end
