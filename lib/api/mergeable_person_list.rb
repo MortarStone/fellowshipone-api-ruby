@@ -63,7 +63,7 @@ module FellowshipOne
     # @return True on empty, false otherwise.
     def empty?
       #@json_data['person'].empty?
-      self.count == "0" ? true : false
+      self.count == 0 ? true : false
     end
 
 
