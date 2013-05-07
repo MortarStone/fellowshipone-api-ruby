@@ -13,13 +13,11 @@ module FellowshipOne
     #
     # Options:
     # :page - (optional) The page number to get.
-    # :reader - The Reader to use to load the data.
+    # :reader - (optional) The Reader to use to load the data.
     def initialize(options)
       #options[:page] ||= 1
       reader = options[:reader] || FellowshipOne::ContributionListReader.new(options)
       @json_data = reader.load_feed
-
-      #@json_data = json["results"] || json #for flexibility due to differing F1 formats
 
       @count = @json_data['@count'].to_i
       @page_number = @json_data['@pageNumber'].to_i

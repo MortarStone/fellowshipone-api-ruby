@@ -8,14 +8,23 @@ module FellowshipOne
 
 
     # Constructor.
-    # 
-    def initialize(json)
-      @json_data = json["results"] || json #for flexibility due to differing F1 formats
+    #
+    # @param options A hash of options for loading the list.
+    #
+    # Options:
+    # :page - (optional) The page number to get.
+    # :reader - (optional) The Reader to use to load the data.
+    def initialize(options)
+      #options[:page] ||= 1
+      reader = options[:reader] || FellowshipOne::PersonListReader.new(options)
+      @json_data = reader.load_feed
+
       @count = @json_data['@count'].to_i
       @page_number = @json_data['@pageNumber'].to_i
       @total_records = @json_data['@totalRecords'].to_i
       @additional_pages = @json_data['@additionalPages'].to_i
     end
+
 
     # All the people in the list.
     #

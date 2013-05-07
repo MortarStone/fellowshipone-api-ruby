@@ -15,17 +15,21 @@ module FellowshipOne
     #
     def self.load_by_id(household_id)
       reader = HouseholdReader.new(household_id)
-      self.new(reader.load_feed['household'])
+      self.new(reader)
     end
 
 
     # Constructor.
     #
-    # @param json_data (optional) The object that has the data.
-    def initialize(json_data = nil)
-      initialize_from_json_object(json_data) unless json_data.nil?     	
+    # @param reader (optional) The object that has the data. This can be a HouseholdReader or Hash object.
+    def initialize(reader = nil)
+      if reader.is_a?(HouseholdReader)
+        initialize_from_json_object(reader.load_feed['household'])
+      elsif reader.is_a?(Hash)
+        initialize_from_json_object(reader)
+      end    
     end
-
+    
 	end
 
 end
