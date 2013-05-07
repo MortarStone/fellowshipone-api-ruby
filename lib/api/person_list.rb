@@ -17,7 +17,6 @@ module FellowshipOne
       @additional_pages = @json_data['@additionalPages'].to_i
     end
 
-
     # All the people in the list.
     #
     # @return array of names (first last).
@@ -52,7 +51,7 @@ module FellowshipOne
     # @return True on empty, false otherwise.
     def empty?
       #@json_data['person'].empty?
-      self.count == "0" ? true : false
+      self.count == 0 ? true : false
     end
 
 
@@ -69,7 +68,7 @@ module FellowshipOne
     # @returns Raw JSON data.
     def raw_data
       @json_data
-    end  
+    end
 
   end
     
