@@ -14,7 +14,7 @@ module FellowshipOne
 
       alpha.upto(omega) do |x|
         person_list = Search.search_for_person_by_name(x)
-        mpl.add(person_list)
+        mpl.add(person_list) unless person_list.empty?
       end
 
       mpl
@@ -24,7 +24,8 @@ module FellowshipOne
     # Constructor.
     # 
     def initialize
-      @json_data = {'person' = []}
+      @json_data = { 'person' => [] }
+       # commented out until can figure out what he was doing here.
     end
 
 
@@ -86,7 +87,9 @@ module FellowshipOne
     #
     def add(person_list)
       @json_data['person'] += person_list.raw_data['person']
-    end    
+    end   
+
+    alias_method :merge, :add  
 
   end
     
