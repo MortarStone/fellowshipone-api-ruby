@@ -28,4 +28,6 @@ contribution_list.each do |cl|
 	donation_list << {date: date, amount: amount, household_name: name, household_id: id}
 end
 
-puts donation_list.inspect
+donation_list.each do |donation|
+	puts donation
+end

@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
 
   s.homepage = 'https://github.com/weshays/fellowshipone-api'
   s.rubyforge_project = 'Project on www.github.com'
-  s.authors = ['Wes Hays']
-  s.email = 'weshays@gbdev.com'
+  s.authors = ['Wes Hays', 'Chad Feller']
+  s.email = ['weshays@gbdev.com','feller@cs.unr.edu']
 
   s.summary = 'Ruby gem/plugin to interact with the FellowshipOne API (https://developer.fellowshipone.com/).'
   s.description = 'Ruby gem/plugin to interact with the FellowshipOne API (https://developer.fellowshipone.com/). Checkout the project on github for more detail.'
