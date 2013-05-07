@@ -29,23 +29,22 @@ contribution_list.each do |contribution|
   # contribution.received_date
   # contribution.fund['name']
 
-  household_info = FellowshipOne::Household.load_by_id( contribution.household_id )
+  people = FellowshipOne::MemberHouseholdList.new({:household_id => contribution.household_id})
 
-  people_list = FellowshipOne::Search.search_for_person_by_name( household_info.household_sort_name)
-  
-  people_in_household = people_list.collect { |person| household_info.id == person.household_id ? person : nil }.compact
+  people.each do |person|
+    puts person.first_name
+   
+    # Info to use
+    # person.id 
+    # person.household_id
+    # person.first_name
+    # person.last_name
+    # person.gender
+    # person.date_of_birth
+    # person.marital_status
+    # person.addresses
+    # person.communications #phone numbers
 
-  person = people_in_household[0]
- 
-  # Info to use
-  # person.id 
-  # person.household_id
-  # person.first_name
-  # person.last_name
-  # person.gender
-  # person.date_of_birth
-  # person.marital_status
-  # person.addresses
-  # person.communications #phone numbers
+  end
 
 end

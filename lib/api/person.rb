@@ -70,6 +70,11 @@ module FellowshipOne
         initialize_from_json_object(reader)
       end         
     end
+
+
+    def is_head_of_household?
+      (!self.household_member_type.nil? and self.household_member_type['name'].downcase == 'head')
+    end
     
   end
 
