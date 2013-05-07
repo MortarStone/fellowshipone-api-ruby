@@ -4,10 +4,6 @@ module FellowshipOne
   class ApiReader
     attr_reader :headers
 
-    # Constructor
-    # def initialize
-    # end
-
     # Loads the list
     #
     # @return the data loaded in a JSON object.

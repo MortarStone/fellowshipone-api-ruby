@@ -6,7 +6,7 @@ module FellowshipOne
       options = {:url_data_params => {:startReceivedDate => start_date, :endReceivedDate => end_date},
                  :url_data_path => "/giving/v1/contributionreceipts/search"}
       reader = FellowshipOne::ContributionListReader.new(options)
-      ContributionList.new(reader.load_feed)
+      ContributionList.new(reader)
     end
 
     def self.search_for_person_by_name(name)

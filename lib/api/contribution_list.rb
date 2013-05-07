@@ -12,40 +12,27 @@ module FellowshipOne
     # @param options A hash of options for loading the list.
     #
     # Options:
-    # :page - The page number to get.
+    # :page - (optional) The page number to get.
     # :reader - The Reader to use to load the data.
-    # :search - (optional) A donation name to search on.
-    #
-    #
-    # Examples:
-    # DonationList.new
-    #
-    # DonationList.new({:page => 2})
-    #
-    def initialize(json)
-      @json_data = json["results"] || json #for flexibility due to differing F1 formats
+    def initialize(options)
+      #options[:page] ||= 1
+      reader = options[:reader] || FellowshipOne::ContributionListReader.new(options)
+      @json_data = reader.load_feed
+
+      #@json_data = json["results"] || json #for flexibility due to differing F1 formats
 
       @count = @json_data['@count'].to_i
       @page_number = @json_data['@pageNumber'].to_i
       @total_records = @json_data['@totalRecords'].to_i
       @additional_pages = @json_data['@additionalPages'].to_i
     end
-    
-    
-    # All the donations in the list.
-    #
-    # @return array of donation names.
-    # def all_names
-    #   @json_data['donations'].collect { |cont_recpt| cont_recpt['user_name'] }
-    # end
-    # alias :names :all_names  
-    
 
-    # Get the specified donation.
+
+    # Get the specified contribution.
     #
-    # @param index The index of the donation to get.
+    # @param index The index of the contribution to get.
     #
-    # @return [donation]
+    # @return Contribution
     def [](index)
       Contribution.new( @json_data['contributionReceipt'][index] ) if @json_data['contributionReceipt'][index]
     end
@@ -64,7 +51,6 @@ module FellowshipOne
     #
     # @return True on empty, false otherwise.
     def empty?
-      #@json_data['donations'].empty?
       self.count == 0 ? true : false
     end
 
