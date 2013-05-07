@@ -54,14 +54,20 @@ module FellowshipOne
       end
     end
 
+    
     def household_id
     	self.household['@id']
     end
 
+    
     def individual_id
     	self.person['@id']
     end
     alias_method :person_id, :individual_id
+
+    def amount_cents
+      (self.amount.to_f * 100).to_i
+    end
 	end
 
 end

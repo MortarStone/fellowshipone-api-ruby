@@ -6,7 +6,7 @@ module FellowshipOne
     #
     # @param page The page number to get. Default is 1.
     # @param options A hash of options for requesting data from the server.
-    def initialize(options = {}, cacher = nil)
+    def initialize(options = {})
       page = options[:page] || 1
       filter = options[:filter]
 
