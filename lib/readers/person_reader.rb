@@ -4,7 +4,7 @@ module FellowshipOne
 
     # Constructor.
     #
-    # @param person_id The ID of the user to load.
+    # @param person_id The ID of the person to load.
     def initialize(person_id)
       @url_data_path = "/v1/People/#{person_id}"
     end
