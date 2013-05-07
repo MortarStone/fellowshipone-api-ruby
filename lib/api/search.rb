@@ -16,6 +16,13 @@ module FellowshipOne
       PersonList.new(reader.load_feed)
     end
 
+    def self.search_for_household_by_name(name)
+      options = {:url_data_params => {:searchFor => name}, 
+                 :url_data_path => "/v1/Households/Search"}
+      reader = FellowshipOne::HouseholdListReader.new(options)
+      HouseholdList.new(reader.load_feed)
+    end
+
 	end
 
 end

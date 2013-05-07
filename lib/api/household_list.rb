@@ -6,21 +6,13 @@ module FellowshipOne
 
     attr_reader :count, :page_number, :total_records, :additional_pages
 
-    # def all_names
-    #   return [] unless @json_data['person']
-    #   @json_data['person'].collect { |person| [person['firstName'], person['lastName']].join(' ') }
-    # end
-
-    # alias_method :names, :all_names
-
-
-    # def self.search_by_name(name)
-    #   options = {:url_data_params => {:searchFor => name}, 
-    #              :url_data_path => "/v1/People/Search"
-    #             }
-    #   reader = FellowshipOne::HouseholdListReader.new(options)
-    #   self.new(reader.load_feed)
-    # end
+    def initialize(json)
+      @json_data = json["results"] || json #for flexibility due to differing F1 formats
+      @count = @json_data['@count'].to_i
+      @page_number = @json_data['@pageNumber'].to_i
+      @total_records = @json_data['@totalRecords'].to_i
+      @additional_pages = @json_data['@additionalPages'].to_i
+    end
 
     # Get the specified user.
     #
