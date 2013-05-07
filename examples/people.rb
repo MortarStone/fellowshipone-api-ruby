@@ -23,38 +23,35 @@ person_list = FellowshipOne::Search.search_for_person_by_name("hays")
 person_list_2 = FellowshipOne::Search.search_for_person_by_name("feller")
 
 #merges person_list and person_list_2
-person_list.merge(person_list_2)
+mpl = FellowshipOne::MergeablePersonList.new
+mpl.add(person_list)
+mpl.merge(person_list_2)
 
-puts "--- After person_list.merge(person_list_2) ---"
-puts person_list.names
-puts
+puts "--- After mpl.merge(person_list_2) ---"
+puts mpl.names
+puts 
 
 # loads every person on F1
-person_list_3 = FellowshipOne::PersonList.load_all
-puts "--- After PersonList.load_all ---"
-puts person_list_3.names
+mpl_2 = FellowshipOne::MergeablePersonList.load_all("aa","az")
+puts '--- After MergeablePersonList.load_all("aa","az") ---'
+puts mpl_2.names
 puts
 
 # loads a range of people from "ha*" to "hz*"
-person_list_4 = FellowshipOne::PersonList.load_all("ha","hz")
+mpl_3 = FellowshipOne::MergeablePersonList.load_all("ha","hz")
 
-puts '--- After PersonList.load_all("ha","hz") ---'
-puts person_list_4.names
+puts '--- After MergeablePersonList.load_all("ha","hz") ---'
+puts mpl_3.names
 puts
 
-person_list.merge(person_list_4)
+mpl_2.merge(mpl_3)
 
-puts "--- After person_list.merge(person_list_4) ---"
-puts person_list_4.names
+puts "--- After mpl_2.merge(mpl_3) ---"
+puts mpl_2.names
 puts
 
 
-puts '--- Output of "puts person_list.get_ids" ---'
-puts person_list.get_ids
+puts '--- Output of "puts person_list.ids" ---'
+puts person_list.ids
 puts
-
-puts '--- Output of "puts person_list.get_uniq_ids" ---'
-puts person_list.get_uniq_ids
-puts
-
 
