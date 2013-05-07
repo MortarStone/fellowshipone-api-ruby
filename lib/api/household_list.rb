@@ -44,6 +44,13 @@ module FellowshipOne
       self.count == 0 ? true : false
     end
 
+    # Get all the household ids in the list.
+    #
+    # @return An array of household ids.
+    def ids
+      (@json_data['household'].collect { |household| household['@id'] }).uniq
+    end
+
     # Access to the raw JSON data.  This method is needed for merging lists.
     #
     # @returns Raw JSON data.
