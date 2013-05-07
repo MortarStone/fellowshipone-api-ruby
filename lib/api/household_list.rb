@@ -45,8 +45,16 @@ module FellowshipOne
     # @return True on empty, false otherwise.
     def empty?
       #@json_data['person'].empty?
-      self.count == "0" ? true : false
+      self.count == 0 ? true : false
     end
+
+    # Access to the raw JSON data.  This method is needed for merging lists.
+    #
+    # @returns Raw JSON data.
+    def raw_data
+      @json_data
+    end
+
 
   end
     
