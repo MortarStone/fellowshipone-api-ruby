@@ -23,6 +23,10 @@ module FellowshipOne
       Household.new( @json_data['household'][index] ) if @json_data['household'] and @json_data['household'][index]
     end
 
+    def all_names
+      return [] unless @json_data['household']
+      @json_data['household'].collect { |household| household['householdName'] }
+    end
 
     # This method is needed for Enumerable.
     def each &block
