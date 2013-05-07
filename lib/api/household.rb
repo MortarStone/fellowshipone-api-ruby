@@ -2,7 +2,8 @@ module FellowshipOne
 
 	class Household < ApiObject
 
-		f1_attr_accessor :household_name,
+		f1_attr_accessor :id,
+                     :household_name,
 										 :household_sort_name,
 										 :household_first_name,
 										 :last_security_authorization,
