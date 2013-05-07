@@ -36,10 +36,10 @@ module FellowshipOne
     # All the donations in the list.
     #
     # @return array of donation names.
-    def all_names
-      @json_data['donations'].collect { |cont_recpt| cont_recpt['user_name'] }
-    end
-    alias :names :all_names  
+    # def all_names
+    #   @json_data['donations'].collect { |cont_recpt| cont_recpt['user_name'] }
+    # end
+    # alias :names :all_names  
     
 
     # Get the specified donation.
