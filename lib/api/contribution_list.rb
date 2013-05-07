@@ -24,6 +24,7 @@ module FellowshipOne
     #
     def initialize(json)
       @json_data = json["results"] || json #for flexibility due to differing F1 formats
+
       @count = @json_data['@count'].to_i
       @page_number = @json_data['@pageNumber'].to_i
       @total_records = @json_data['@totalRecords'].to_i
@@ -34,10 +35,10 @@ module FellowshipOne
     # All the donations in the list.
     #
     # @return array of donation names.
-    def all_names
-      @json_data['donations'].collect { |cont_recpt| cont_recpt['user_name'] }
-    end
-    alias :names :all_names  
+    # def all_names
+    #   @json_data['donations'].collect { |cont_recpt| cont_recpt['user_name'] }
+    # end
+    # alias :names :all_names  
     
 
     # Get the specified donation.
@@ -64,7 +65,7 @@ module FellowshipOne
     # @return True on empty, false otherwise.
     def empty?
       #@json_data['donations'].empty?
-      self.count == "0" ? true : false
+      self.count == 0 ? true : false
     end
 
   end
