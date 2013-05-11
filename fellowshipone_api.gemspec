@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version = PROJECT_GEM_VERSION
   s.platform = Gem::Platform::RUBY
 
-  s.homepage = 'https://github.com/weshays/fellowshipone-api'
+  s.homepage = 'https://github.com/weshays/fellowshipone-api-ruby'
   s.rubyforge_project = 'Project on www.github.com'
   s.authors = ['Wes Hays', 'Chad Feller']
   s.email = ['weshays@gbdev.com','feller@cs.unr.edu']
