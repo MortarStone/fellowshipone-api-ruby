@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'typhoeus', '0.4.2'
+gem 'typhoeus', '>=0.5.0'
 gem 'json'
-gem 'oauth'
+gem 'oauth', '0.4.7' # lock to this version until our patch is accepted upstream
 
 group :development, :test do
   gem 'autotest'

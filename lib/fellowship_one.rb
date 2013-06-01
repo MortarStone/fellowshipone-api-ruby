@@ -1,4 +1,3 @@
-# gem 'typhoeus', '0.3.3'
 require 'oauth'
 require 'yaml'
 require 'typhoeus'
