@@ -46,16 +46,16 @@ module FellowshipOne
                                    :http_method => method)
     access_token = OAuth::AccessToken.new(consumer, FellowshipOne::Api.api_token, FellowshipOne::Api.api_secret)
 
-    options = {:params => params}
+    options = {:params => params, :method => method}
     oauth_params = {:consumer => consumer, :token => access_token}
     hydra = Typhoeus::Hydra.new
     req = Typhoeus::Request.new(url, options)
 
     # {'Content-Type' => 'application/vnd.fellowshiponeapi.com.people.people.v2+json'}
-    req.headers.merge!({'Content-Type' => 'application/json'})
+    req.options[:headers].merge!({'Content-Type' => 'application/json'})
     oauth_helper = OAuth::Client::Helper.new(req, oauth_params.merge(:request_uri => url))
     
-    req.headers.merge!({"Authorization" => oauth_helper.header}) # Signs the request
+    req.options[:headers].merge!({"Authorization" => oauth_helper.header}) # Signs the request
     
     hydra.queue(req)
     hydra.run
@@ -64,13 +64,3 @@ module FellowshipOne
   end  
 
 end
-
-
-# CONSUMER_KEY = '492'
-# CONSUMER_SECRET = '9956f9bf-297d-4940-9b17-a0fe50035071'
-# url = "https://morstone.staging.fellowshiponeapi.com/v1"
-# consumer = OAuth::Consumer.new(CONSUMER_KEY, CONSUMER_SECRET, :site => url)
-
-# OAUTH_TOKEN = '2f843117-a090-41f5-b848-4487d3391e9b'
-# OAUTH_SECRET = 'cc780143-7e27-4cf4-bd1b-c4b1385a5e8c'
-# access_token = OAuth::AccessToken.new(consumer, OAUTH_TOKEN, OAUTH_SECRET)

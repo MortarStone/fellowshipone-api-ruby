@@ -1,3 +1,4 @@
+# gem 'typhoeus', '0.3.3'
 require 'oauth'
 require 'yaml'
 require 'typhoeus'
@@ -7,9 +8,12 @@ require 'json'
 # The path to the lib directory.
 FELLOWSHIPONE_LIB_DIR = File.dirname(__FILE__)
 
-require File.dirname(__FILE__) + '/auto_load.rb'
+require File.dirname(__FILE__) + '/auto_load'
 
-require File.dirname(__FILE__) + '/common.rb'
+require File.dirname(__FILE__) + '/common'
+
+require File.dirname(__FILE__) + '/oauth_monkey_patch'
+
 
 module FellowshipOne
 

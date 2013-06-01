@@ -25,7 +25,6 @@ module FellowshipOne
     # 
     def initialize
       @json_data = { 'person' => [] }
-       # commented out until can figure out what he was doing here.
     end
 
 
