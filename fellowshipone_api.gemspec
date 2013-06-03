@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.description = 'Ruby gem/plugin to interact with the FellowshipOne API (https://developer.fellowshipone.com/). Checkout the project on github for more detail.'
 
   s.add_dependency('typhoeus', '0.5.1')
-  s.add_dependency('oauth', '0.4.7')
+  #s.add_dependency('oauth', '0.4.7')
 
 
   s.files         = `git ls-files`.split("\n")

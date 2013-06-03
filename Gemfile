@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'typhoeus', '0.4.2'
+gem 'typhoeus', '0.5.1'
 gem 'json'
-gem 'oauth'
+gem 'oauth', :git => 'git://github.com/cfeller/oauth-ruby.git', :branch => 'master'
 
 group :development, :test do
   gem 'autotest'
