@@ -24,10 +24,10 @@ module FellowshipOne
         raise FellowshipOneExceptions::UnableToConnectToFellowshipOne.new('Church code, Consumer Key and Consumer Secret cannot be nil.') 
       end
 
-      consumer_env = production ? 'production' : 'staging'
+      consumer_env = production ? '' : '.staging' # Yes, blank is production
 
       consumer = OAuth::Consumer.new(consumer_key, consumer_secret, 
-                                     :site => "https://#{church_code}.#{consumer_env}.fellowshiponeapi.com",
+                                     :site => "https://#{church_code}#{consumer_env}.fellowshiponeapi.com",
                                      :request_token_path => '/v1/Tokens/RequestToken', 
                                      :authorize_path     => '/v1/PortalUser/Login',
                                      :access_token_path  => '/v1/Tokens/AccessToken')
