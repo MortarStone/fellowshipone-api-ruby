@@ -8,9 +8,13 @@
 require File.dirname(__FILE__) + '/../lib/fellowship_one.rb'
 
 require File.dirname(__FILE__) + '/f1_keys.rb'
-include F1Keys
 
-FellowshipOne::Api.connect(CHURCH_CODE, CONSUMER_KEY, CONSUMER_SECRET, OAUTH_TOKEN, OAUTH_SECRET, IS_PRODUCTION)
+FellowshipOne::Api.connect(F1Keys::CHURCH_CODE, 
+                           F1Keys::CONSUMER_KEY, 
+                           F1Keys::CONSUMER_SECRET, 
+                           F1Keys::OAUTH_TOKEN, 
+                           F1Keys::OAUTH_SECRET, 
+                           F1Keys::IS_PRODUCTION)
 
 household = FellowshipOne::Household.load_by_id(27590670)
 puts '*****************'
