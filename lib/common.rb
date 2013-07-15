@@ -36,8 +36,8 @@ module FellowshipOne
 
 
   def self._oauth_request_get(method, path, params, body)
-    consumer_env = FellowshipOne::Api.is_production ? 'production' : 'staging'
-    base_url = "https://#{FellowshipOne::Api.church_code}.#{consumer_env}.fellowshiponeapi.com"
+    consumer_env = FellowshipOne::Api.is_production ? '' : '.staging'
+    base_url = "https://#{FellowshipOne::Api.church_code}#{consumer_env}.fellowshiponeapi.com"
     url = base_url + path
 
     consumer = OAuth::Consumer.new(FellowshipOne::Api.consumer_key, 
