@@ -22,29 +22,27 @@ start_date = "2009-01-01"
 end_date = "2013-06-30"
 contribution_list = FellowshipOne::Search.search_for_contributions_by_date(start_date, end_date)
 
-debugger
-asdf=234
 
-# contribution_list.each do |contribution|
-#   # Info to use
-#   # contribution.household_id
-#   # contribution.amount_cents
-#   # contribution.received_date
-#   # contribution.fund['name']
+contribution_list.each do |contribution|
+  # Info to use
+  # contribution.household_id
+  # contribution.amount_cents
+  # contribution.received_date
+  # contribution.fund['name']
 
-#   people = FellowshipOne::MemberHouseholdList.new({:household_id => contribution.household_id})
+  people = FellowshipOne::MemberHouseholdList.new({:household_id => contribution.household_id})
 
-#   people.each do |person|
-#     puts "---------------------"
-#     puts person.first_name
-#     puts person.id 
-#     puts person.household_id
-#     puts person.first_name
-#     puts person.last_name
-#     puts person.gender
-#     puts person.date_of_birth
-#     puts person.marital_status
-#     puts "---------------------"
-#   end
+  people.each do |person|
+    puts "---------------------"
+    puts person.first_name
+    puts person.id 
+    puts person.household_id
+    puts person.first_name
+    puts person.last_name
+    puts person.gender
+    puts person.date_of_birth
+    puts person.marital_status
+    puts "---------------------"
+  end
 
-# end
+end
