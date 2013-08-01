@@ -11,14 +11,22 @@ module FellowshipOne
     #
     def self.load_all(alpha="aa",omega="zz")
       mpl = MergeablePersonList.new
-
-      alpha.upto(omega) do |x|
+      alpha.upto(omega).each do |x|
         person_list = Search.search_for_person_by_name(x)
         mpl.add(person_list) unless person_list.empty?
       end
-
       mpl
     end
+
+
+    # Load all people created on or after the specified date and load them into a MergedPersonList.
+    #
+    def self.load_all_on_or_after(start_date)
+      mpl = MergeablePersonList.new
+      person_list = Search.search_for_person_created_on_or_after(start_date)
+      mpl.add(person_list) unless person_list.empty?
+      mpl
+    end    
 
 
     # Constructor.

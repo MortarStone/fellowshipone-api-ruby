@@ -44,6 +44,10 @@ puts
 # loads a range of people from "ha*" to "hz*"
 mpl_3 = FellowshipOne::MergeablePersonList.load_all("ha","hz")
 
+# load every person created on or after start_date
+start_date = '2009-01-01'
+results = FellowshipOne::Search.search_for_person_created_on_or_after(start_date)
+
 puts '--- After MergeablePersonList.load_all("ha","hz") ---'
 puts mpl_3.names
 puts
@@ -52,6 +56,10 @@ mpl_2.merge(mpl_3)
 
 puts "--- After mpl_2.merge(mpl_3) ---"
 puts mpl_2.names
+puts
+
+puts "--- Created on or after 2009-01-01 ---"
+puts results
 puts
 
 
