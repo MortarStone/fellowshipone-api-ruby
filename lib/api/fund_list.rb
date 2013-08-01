@@ -14,15 +14,13 @@ module FellowshipOne
     # Options:
     # :reader - (optional) The Reader to use to load the data.
     def initialize(options = {})
-      #options[:page] ||= 1
       reader = options[:reader] || FellowshipOne::FundListReader.new(options)
       @json_data = reader.load_feed
-      # @count = @json_data['@count'].to_i
-      # @page_number = @json_data['@pageNumber'].to_i
-      # @total_records = @json_data['@totalRecords'].to_i
-      # @additional_pages = @json_data['@additionalPages'].to_i
+      @count = @json_data['funds']['fund'].size.to_i
+      @page_number = 1
+      @total_records = @count
+      @additional_pages = 0
     end
-
 
     # Get the specified fund.
     #
