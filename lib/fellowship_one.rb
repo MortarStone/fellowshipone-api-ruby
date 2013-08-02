@@ -26,6 +26,8 @@ module FellowshipOne
 
       consumer_env = production ? '' : '.staging' # Yes, blank is production
 
+      puts "F1 URL: https://#{church_code}#{consumer_env}.fellowshiponeapi.com"
+
       consumer = OAuth::Consumer.new(consumer_key, consumer_secret, 
                                      :site => "https://#{church_code}#{consumer_env}.fellowshiponeapi.com",
                                      :request_token_path => '/v1/Tokens/RequestToken', 
