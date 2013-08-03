@@ -6,20 +6,19 @@ module FellowshipOne
     #
     # Options:
     # :page - (optional) The page number to get.
-    # :filter - (optional) Filter options for the request.
+    # :per_page - (optional) The number of items to return per page.
     # :household_id - The household ID to pull the info for.
+    # :search_for - (optional) Search for name in the request.
     def initialize(options = {})
-      raise 'Household ID not specified' if options[:household_id].nil? and options[:url_data_path].nil?
-
+      raise 'Household ID not specified' if options[:household_id].nil? and options[:search_for].nil?
+      
       page = options[:page] || 1
-      filter = options[:filter]
-      household_id = options[:household_id]
-
-      @url_data_params = options[:url_data_params] || {}
-      @url_data_path = options[:url_data_path] || "/v1/Households/#{household_id}/People"
+      @url_data_params = {}
+      @url_data_path = options[:search_for].nil? ? "/v1/Households/#{options[:household_id].to_i}/People" : '/v1/Households/Search'
 
       @url_data_params.merge!({:page => page}) if page
-      @url_data_params.merge!({:filter => filter}) if filter      
+      @url_data_params.merge!({:recordsPerPage => per_page}) if per_page
+      @url_data_params.merge!({:search_for => options[:search_for]}) if options[:search_for]      
     end
 
   end
