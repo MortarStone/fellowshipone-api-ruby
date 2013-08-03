@@ -41,4 +41,3 @@ mhl.add(hh_2)
 puts mhl.all_names
 
 puts mhl.ids
-
