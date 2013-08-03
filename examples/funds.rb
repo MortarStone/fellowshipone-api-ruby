@@ -18,4 +18,8 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
 
 fund_list = FellowshipOne::FundList.new
 
-fund = FellowshipOne::Fund.load_by_id(185175)
+require 'ruby-debug'
+debugger
+asdf=234
+
+#fund = FellowshipOne::Fund.load_by_id(185175)

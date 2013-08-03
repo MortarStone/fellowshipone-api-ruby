@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'typhoeus', '0.5.1'
 gem 'json'
-gem 'oauth', :git => 'git://github.com/cfeller/oauth-ruby.git', :branch => 'master'
+gem 'oauth_weshays'
 
 group :development, :test do
   gem 'autotest'
