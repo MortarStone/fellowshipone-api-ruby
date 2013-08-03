@@ -16,13 +16,19 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
                            F1Keys::OAUTH_SECRET, 
                            F1Keys::IS_PRODUCTION)
 
-household = FellowshipOne::Household.load_by_id(27590670)
-puts '*****************'
-puts household.inspect
-puts '*****************'
-puts '*****************'
+# household = FellowshipOne::Household.load_by_id(32849301)
+# puts '*****************'
+# puts household.inspect
+# puts '*****************'
+# puts '*****************'
 
 hh_1 = FellowshipOne::Search.search_for_household_by_name("hays")
+puts '*****************'
+puts hh_1.inspect
+puts '*****************'
+puts '*****************'
+puts hh_1.collect { |h| h.household_name }
+
 
 hh_2 = FellowshipOne::Search.search_for_household_by_name("feller")
 
