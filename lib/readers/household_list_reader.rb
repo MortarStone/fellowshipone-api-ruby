@@ -11,8 +11,10 @@ module FellowshipOne
     # :search_for - (optional) Search for name in the request.
     def initialize(options = {})
       raise 'Household ID not specified' if options[:household_id].nil? and options[:search_for].nil?
-      
+
       page = options[:page] || 1
+      per_page = options[:per_page] || 100
+      
       @url_data_params = {}
       @url_data_path = options[:search_for].nil? ? "/v1/Households/#{options[:household_id].to_i}/People" : '/v1/Households/Search'
 

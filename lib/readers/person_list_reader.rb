@@ -13,6 +13,7 @@ module FellowshipOne
     # ** search params are mutually exclusive and cannot be used with any other search parameters
     def initialize(options = {})
       page = options[:page] || 1
+      per_page = options[:per_page] || 100
 
       @url_data_params = {}
       @url_data_path = (options[:search_for].nil? and options[:created_date].nil?) ? '/v1/People' : '/v1/People/Search'
