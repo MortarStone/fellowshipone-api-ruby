@@ -54,11 +54,14 @@ module FellowshipOne
       end
     end
 
+
+    def fund_id
+      self.fund['@id']
+    end
     
     def household_id
     	self.household['@id']
     end
-
     
     def individual_id
     	self.person['@id']
