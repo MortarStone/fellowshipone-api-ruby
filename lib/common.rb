@@ -39,6 +39,12 @@ module FellowshipOne
     consumer_env = FellowshipOne::Api.is_production ? '' : '.staging'
     base_url = "https://#{FellowshipOne::Api.church_code}#{consumer_env}.fellowshiponeapi.com"
     url = base_url + path
+    if method == :get
+      url_params = params.collect { |k, v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')
+      url_params = nil if url_params.empty?
+      url = [url, url_params].compact.join('?')
+      params = {}
+    end 
 
     consumer = OAuth::Consumer.new(FellowshipOne::Api.consumer_key, 
                                    FellowshipOne::Api.consumer_secret, 
