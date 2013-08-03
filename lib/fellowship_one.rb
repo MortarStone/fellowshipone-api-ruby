@@ -11,6 +11,8 @@ require File.dirname(__FILE__) + '/auto_load.rb'
 
 require File.dirname(__FILE__) + '/common.rb'
 
+require File.dirname(__FILE__) + '/oauth_monkey_patch'
+
 module FellowshipOne
 
   class Api
