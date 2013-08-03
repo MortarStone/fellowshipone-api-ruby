@@ -71,6 +71,10 @@ module FellowshipOne
     def amount_cents
       (self.amount.to_f * 100).to_i
     end
+
+    def instrument_type
+      self.contribution_type['name']
+    end
 	end
 
 end
