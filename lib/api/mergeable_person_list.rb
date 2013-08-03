@@ -12,8 +12,14 @@ module FellowshipOne
     def self.load_all(alpha="aa",omega="zz")
       mpl = MergeablePersonList.new
       alpha.upto(omega).each do |x|
+        page = 1
         person_list = Search.search_for_person_by_name(x)
         mpl.add(person_list) unless person_list.empty?
+        while person_list.additional_pages > 0
+          page += 1
+          person_list = Search.search_for_person_by_name(x,page)
+          mpl.add(person_list) unless person_list.empty?
+        end
       end
       mpl
     end
