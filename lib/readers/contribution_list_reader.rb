@@ -11,7 +11,7 @@ module FellowshipOne
     # :end_date - (optional) search for receipts with a received date less than or equal to this parameter. Must be used in conjunction with startReceivedDate.
     def initialize(options = {})
       page = options[:page] || 1
-      per_page = options[:per_page] || 100
+      per_page = options[:per_page] || 500
 
       @url_data_params = {}
       @url_data_path = options[:start_date].nil? ? '/giving/v1/contributionreceipts' : '/giving/v1/contributionreceipts/search'
