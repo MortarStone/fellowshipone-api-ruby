@@ -2,8 +2,8 @@ module FellowshipOne
 
 	class Search
 
-    def self.search_for_contributions_by_date(start_date, end_date)
-      options = {:start_date => start_date, :end_date => end_date, :per_page => 1000}
+    def self.search_for_contributions_by_date(start_date, end_date, per_page = 500)
+      options = {:start_date => start_date, :end_date => end_date, :per_page => per_page}
       reader = FellowshipOne::ContributionListReader.new(options)
       ContributionList.new({:reader => reader})
     end
@@ -20,8 +20,8 @@ module FellowshipOne
       PersonList.new({:reader => reader})
     end    
 
-    def self.search_for_household_by_name(name)
-      options = {:search_for => name}
+    def self.search_for_household_by_name(name, page=1)
+      options = {:page => page, :search_for => name}
       reader = FellowshipOne::HouseholdListReader.new(options)
       HouseholdList.new({:reader => reader})
     end
