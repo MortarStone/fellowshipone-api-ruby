@@ -2,7 +2,7 @@ module FellowshipOne
 
 	class Search
 
-    def self.search_for_contributions_by_date(start_date, end_date, per_page = 500)
+    def self.search_for_contributions_by_date(start_date, end_date, page=1, per_page=500)
       options = {:start_date => start_date, :end_date => end_date, :per_page => per_page}
       reader = FellowshipOne::ContributionListReader.new(options)
       ContributionList.new({:reader => reader})
