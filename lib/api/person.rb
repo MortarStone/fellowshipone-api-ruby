@@ -2,6 +2,9 @@ module FellowshipOne
 
   include Enumerable
 
+  PersonAddress = Struct.new(:is_primary?, :street, :street2, :city, :state, :postal_code)
+  PersonCommunication = Struct.new(:is_mobile?, :is_email?, :type, :value, :preferred?)
+
   class Person < ApiObject
     f1_attr_accessor :title,
                      :salutation,
@@ -75,9 +78,63 @@ module FellowshipOne
     def is_head_of_household?
       (!self.household_member_type.nil? and self.household_member_type['name'].downcase == 'head')
     end
-    
+
+
+    def family_role
+      begin
+        person.household_member_type['name']
+      rescue
+        'Other'
+      end
+    end
+
+
+    def is_child?
+      begin
+        person.household_member_type['name'].downcase == 'child'
+      rescue
+        false
+      end
+    end
+
+
+    def addresses
+      return nil if @addresses.nil?
+      return @addresses_cache unless @addresses_cache.nil?
+
+      @addresses_cache = []
+      @addresses['address'].each do |addr|
+        @addresses_cache << PersonAddress.new(
+          addr['addressType']['name'].downcase == 'primary', 
+          addr['address1'], 
+          addr['address2'], 
+          addr['city'], 
+          addr['stProvince'], 
+          addr['postalCode']
+        )
+      end    
+      @addresses_cache
+    end
+
   end
 
+
+  def communications
+    return nil if @communications.nil?
+    return @communications_cache unless @communications_cache.nil?
+
+    @communications_cache = []
+    @communications['communication'].each do |comm|
+      @communications_cache << PersonCommunication.new(
+        comm['communicationType']['name'].downcase == 'mobile', 
+        comm['communicationType']['name'].downcase == 'email', 
+        comm['communicationType']['name'], 
+        comm['communicationValue'],
+        comm['preferred'].downcase == 'true'
+      )
+    end    
+    @communications_cache      
+  end
+
+
 end
-
-
