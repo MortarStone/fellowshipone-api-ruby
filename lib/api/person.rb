@@ -3,7 +3,7 @@ module FellowshipOne
   include Enumerable
 
   PersonAddress = Struct.new(:is_primary?, :street, :street2, :city, :state, :postal_code)
-  PersonCommunication = Struct.new(:is_mobile?, :is_email?, :type, :value, :preferred?)
+  PersonCommunication = Struct.new(:is_phone?, :is_mobile?, :is_email?, :type, :value, :preferred?)
 
   class Person < ApiObject
     f1_attr_accessor :title,
@@ -116,25 +116,25 @@ module FellowshipOne
       @addresses_cache
     end
 
+
+    def communications
+      return nil if @communications.nil?
+      return @communications_cache unless @communications_cache.nil?
+
+      @communications_cache = []
+      @communications['communication'].each do |comm|
+        @communications_cache << PersonCommunication.new(
+          comm['communicationType']['name'].downcase.include?('phone'), 
+          comm['communicationType']['name'].downcase.include?('mobile'), 
+          comm['communicationType']['name'].downcase.include?('email'), 
+          comm['communicationType']['name'], 
+          comm['communicationValue'],
+          comm['preferred'].downcase == 'true'
+        )
+      end    
+      @communications_cache      
+    end
+
   end
-
-
-  def communications
-    return nil if @communications.nil?
-    return @communications_cache unless @communications_cache.nil?
-
-    @communications_cache = []
-    @communications['communication'].each do |comm|
-      @communications_cache << PersonCommunication.new(
-        comm['communicationType']['name'].downcase == 'mobile', 
-        comm['communicationType']['name'].downcase == 'email', 
-        comm['communicationType']['name'], 
-        comm['communicationValue'],
-        comm['preferred'].downcase == 'true'
-      )
-    end    
-    @communications_cache      
-  end
-
 
 end
