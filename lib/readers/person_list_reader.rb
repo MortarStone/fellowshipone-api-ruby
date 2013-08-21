@@ -18,7 +18,7 @@ module FellowshipOne
       @url_data_params = {}
       @url_data_path = (options[:search_for].nil? and options[:created_date].nil?) ? '/v1/People' : '/v1/People/Search'
 
-      @url_data_params.merge!({:page => page}) if page
+      @url_data_params.merge!({:page => page, :include => 'addresses,communications'}) if page
       @url_data_params.merge!({:recordsPerPage => per_page}) if per_page
       @url_data_params.merge!({:searchFor => options[:search_for]}) if options[:search_for]
       @url_data_params.merge!({:createdDate => options[:created_date]}) if options[:created_date]
