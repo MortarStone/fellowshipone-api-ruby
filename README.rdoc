@@ -12,7 +12,7 @@ Installing the gem
 
 To add it to your Gemfile
 
-    gem 'fellowshipone-api', :require => 'fellowshipone'
+    gem 'fellowshipone-api', require: 'fellowship_one'
 
 
 == Example usage
