@@ -53,7 +53,7 @@ module FellowshipOne
     access_token = OAuth::AccessToken.new(consumer, FellowshipOne::Api.api_token, FellowshipOne::Api.api_secret)
 
     # options = {:params => params}
-    options = {:params => params, :method => method}
+    options = {:params => params, :method => method, :body => body.to_json}
     oauth_params = {:consumer => consumer, :token => access_token}
     hydra = Typhoeus::Hydra.new
     req = Typhoeus::Request.new(url, options)
