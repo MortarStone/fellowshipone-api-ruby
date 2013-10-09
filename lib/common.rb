@@ -39,12 +39,11 @@ module FellowshipOne
     consumer_env = FellowshipOne::Api.is_production ? '' : '.staging'
     base_url = "https://#{FellowshipOne::Api.church_code}#{consumer_env}.fellowshiponeapi.com"
     url = base_url + path
-    if method == :get
-      url_params = params.collect { |k, v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')
-      url_params = nil if url_params.empty?
-      url = [url, url_params].compact.join('?')
-      params = {}
-    end 
+    # if method == :get
+    #   url_params = params.collect { |k, v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')
+    #   url_params = nil if url_params.empty?
+    #   url = [url, url_params].compact.join('?')
+    # end 
 
     consumer = OAuth::Consumer.new(FellowshipOne::Api.consumer_key, 
                                    FellowshipOne::Api.consumer_secret, 
@@ -52,8 +51,11 @@ module FellowshipOne
                                    :http_method => method)
     access_token = OAuth::AccessToken.new(consumer, FellowshipOne::Api.api_token, FellowshipOne::Api.api_secret)
 
-    # options = {:params => params}
-    options = {:params => params, :method => method, :body => body.to_json}
+require 'ruby-debug'
+debugger
+asdf=234
+
+    options = {:params => params, :method => method} #, :body => body}
     oauth_params = {:consumer => consumer, :token => access_token}
     hydra = Typhoeus::Hydra.new
     req = Typhoeus::Request.new(url, options)
@@ -68,7 +70,7 @@ module FellowshipOne
     
     hydra.queue(req)
     hydra.run
-    
+
     req.response
   end  
 

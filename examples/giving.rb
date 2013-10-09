@@ -18,22 +18,32 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
                            F1Keys::OAUTH_SECRET, 
                            F1Keys::IS_PRODUCTION)
 
-start_date = "2013-04-01"
-end_date = "2013-04-21"
-contribution_list = FellowshipOne::Search.search_for_contributions_by_date(start_date, end_date)
+# start_date = "2013-04-01"
+# end_date = "2013-04-21"
+# contribution_list = FellowshipOne::Search.search_for_contributions_by_date(start_date, end_date)
 
 
-# this needs to be moved into something else... 
-donation_list = []
-contribution_list.each do |cl|
-  date = Date.parse(cl.received_date).to_s
-  name = FellowshipOne::Household.load_by_id( cl.household_id ).household_name
-  amount = cl.amount
-  id = cl.household_id
+# # this needs to be moved into something else... 
+# donation_list = []
+# contribution_list.each do |cl|
+#   date = Date.parse(cl.received_date).to_s
+#   name = FellowshipOne::Household.load_by_id( cl.household_id ).household_name
+#   amount = cl.amount
+#   id = cl.household_id
 
-  donation_list << {date: date, amount: amount, household_name: name, household_id: id}
-end
+#   donation_list << {date: date, amount: amount, household_name: name, household_id: id}
+# end
 
-donation_list.each do |donation|
-  puts donation
-end
+# donation_list.each do |donation|
+#   puts donation
+# end
+
+donation = FellowshipOne::ContributionWriter.new({
+  :amount => '104.15',
+  :fund => 185173,
+  :received_date => '2013-10-01',
+  :contribution_type => 3
+})
+
+
+cw = donation.save_object
