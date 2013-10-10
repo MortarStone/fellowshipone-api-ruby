@@ -70,7 +70,28 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
 # puts
 
 
- mpl_2 = FellowshipOne::MergeablePersonList.load_all("aa","aa")
- require 'ruby-debug'
- debugger
- asdf=234
+## Add Household
+household = FellowshipOne::HouseholdWriter.new({
+  :householdName => 'Some cool place',
+  :householdSortName => 'Landis',
+  :householdFirstName => 'Phil and Barbara'  
+})
+
+household.save_object
+
+
+## Add person to Household
+
+household = FellowshipOne::PersonWriter.new({
+  :householdName => 'Some cool place',
+  :householdSortName => 'Landis',
+  :householdFirstName => 'Phil and Barbara'  
+})
+
+
+
+## Add donation to household
+
+
+
+

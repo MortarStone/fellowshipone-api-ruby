@@ -51,10 +51,6 @@ module FellowshipOne
                                    :http_method => method)
     access_token = OAuth::AccessToken.new(consumer, FellowshipOne::Api.api_token, FellowshipOne::Api.api_secret)
 
-require 'ruby-debug'
-debugger
-asdf=234
-
     options = {:params => params, :method => method} #, :body => body}
     oauth_params = {:consumer => consumer, :token => access_token}
     hydra = Typhoeus::Hydra.new
