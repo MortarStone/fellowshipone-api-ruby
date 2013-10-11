@@ -5,7 +5,6 @@ gem 'json'
 gem 'oauth_weshays'
 
 group :development, :test do
-  gem 'autotest'
   gem 'rspec'
   gem 'debugger'
   gem 'factory_girl'

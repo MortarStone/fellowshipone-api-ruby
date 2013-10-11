@@ -17,8 +17,8 @@ module FellowshipOne
       end
 
       if @updatable_fields and !@updatable_fields.empty?
-        fields_to_remove = @url_data_params.keys - @updatable_fields  
-        fields_to_remove.each { |ftr| @url_data_params.delete(ftr) }
+        # fields_to_remove = @url_data_params.keys - @updatable_fields  
+        # fields_to_remove.each { |ftr| @url_data_params.delete(ftr) }
       end
 
       begin

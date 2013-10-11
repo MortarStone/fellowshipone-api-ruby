@@ -15,13 +15,14 @@ module FellowshipOne
       end
       @url_data_delete_path = "/v1/Households/#{data[:id]}"
 
-      @url_data_params = data
+      @url_data_params = {:household => data}
 
       @updatable_fields = [:oldID,
                            :hCode,
                            :householdName,
                            :householdSortName,
-                           :householdFirstName]
+                           :householdFirstName,
+                           :lastSecurityAuthorization]
     end
     
   end

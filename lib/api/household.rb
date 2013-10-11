@@ -9,7 +9,7 @@ module FellowshipOne
 										 :last_security_authorization,
 										 :last_activity_date,
 										 :created_date,
-										 :last_updated_date
+										 :last_updated_date # This is a datetime
 
     # Loads the household by the specified ID.
     #
