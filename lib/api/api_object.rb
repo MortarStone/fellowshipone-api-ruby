@@ -73,12 +73,14 @@ module FellowshipOne
     #
     # @return True on success, otherwise false.
     def save
+      raise "@writer_object not set for #{self.class}" if @writer_object.nil?
       writer = @writer_object.new(self.to_attributes) 
       result = writer.save_object
       if result === false
         @error_messages = writer.error_messages
       else
-        self.set_attributes(result)
+        rkey = self._default_result_key
+        self.initialize_from_json_object(rkey.nil? ? result : result[rkey])
       end
       result === false ? false : true
     end
@@ -102,6 +104,10 @@ module FellowshipOne
     # This method should be overwritten in the ApiObject subclass.
     def _field_map
       {}
+    end
+
+    def _default_result_key
+      self.class.to_s.split('::').last.downcase
     end
 
     private

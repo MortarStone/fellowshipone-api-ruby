@@ -70,7 +70,7 @@ module FellowshipOne
         initialize_from_json_object(reader.load_feed['person'])
       elsif reader.is_a?(Hash)
         initialize_from_json_object(reader)
-      else # new 
+      else # new empty
         reader = PersonReader.new
         initialize_from_json_object(reader.load_new['person'])
       end         

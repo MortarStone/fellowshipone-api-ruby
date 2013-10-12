@@ -26,6 +26,7 @@ module FellowshipOne
     #
     # @param reader (optional) The object that has the data. This can be a HouseholdReader or Hash object.
     def initialize(reader = nil)
+      @writer_object = HouseholdWriter
       if reader.is_a?(HouseholdReader)
         initialize_from_json_object(reader.load_feed['household'])
       elsif reader.is_a?(Hash)

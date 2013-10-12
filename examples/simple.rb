@@ -69,12 +69,12 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
 
 
 household = FellowshipOne::Household.new
-household.household_name = 'Test 1'
+household.household_name = 'Test 2'
 attrs = household.to_attributes
-#household.save
-
 debugger
 asdf=234
+#household.save
+
 
 # person = FellowshipOne::Person.new
 # person.household_id = 35154894
