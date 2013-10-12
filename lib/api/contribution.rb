@@ -46,12 +46,16 @@ module FellowshipOne
     # Constructor.
     #
     # @param reader (optional) The object that has the data. This can be a ContributionReader or Hash object.
-    def initialize(reader = nil)
+    def initialize(reader = nil)      
+      @writer_object = ContributionWriter
       if reader.is_a?(ContributionReader)
         initialize_from_json_object(reader.load_feed['contributionReceipt'])
       elsif reader.is_a?(Hash)
         initialize_from_json_object(reader)
-      end
+      else # new 
+        reader = ContributionReader.new
+        initialize_from_json_object(reader.load_new['contributionReceipt'])        
+      end   
     end
 
 
@@ -74,6 +78,16 @@ module FellowshipOne
 
     def instrument_type
       self.contribution_type['name']
+    end
+
+    def _default_result_key
+      'contributionReceipt'
+    end
+
+    def _field_map
+      {:id => '@id',
+       :uri => '@uri',
+       :oldId => '@oldID'}
     end
 	end
 

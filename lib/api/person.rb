@@ -137,6 +137,18 @@ module FellowshipOne
       @communications_cache      
     end
 
+
+    def _field_map
+      {:id => '@id',
+       :uri => '@uri',
+       :imageUri => '@imageURI',
+       :oldId => '@oldID',
+       :iCode => '@iCode',
+       :householdId => '@householdID',
+       :oldHouseholdId => '@oldHouseholdID'}
+    end
+    
+
   end
 
 end

@@ -15,7 +15,7 @@ module FellowshipOne
       end
       @url_data_delete_path = "/giving/v1/contributionreceipts/#{data[:id]}"
 
-      @url_data_params = data
+      @url_data_params = @url_data_params = {:contributionReceipt => data}
 
       @updatable_fields = [:amount,
                            :fund,              #required

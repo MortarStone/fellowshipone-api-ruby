@@ -18,73 +18,46 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
                            F1Keys::OAUTH_SECRET, 
                            F1Keys::IS_PRODUCTION)
 
-
-# ## Add Household
-# # household = FellowshipOne::HouseholdWriter.new({
-# #   :householdName => 'Some cool place',
-# #   :householdSortName => 'Landis',
-# #   :householdFirstName => 'Phil',
-# #   :lastSecurityAuthorization => nil,
-# #   :lastActivityDate => DateTime.now.to_s,
-# #   :createdDate => nil, #Date.today.to_s,
-# #   :lastUpdatedDate => nil #DateTime.today.to_s
-# # })
-# # household.save_object
-
-# household = FellowshipOne::Household.load_by_id(35154894)
-
-# ## Add person to Household
-# person = FellowshipOne::PersonWriter.new({
-#   '@householdID' => '35154894',
-#   'title' => '',
-#   'salutation' => '',
-#   'prefix' => 'Mr',
-#   'suffix' => '',
-#   'firstName' => 'Wes',
-#   'lastName' => 'Hays'
-# })
-
-# # person = FellowshipOne::PersonWriter.new({
-# #   '@householdID' => '35154894',
-# #   'householdMemberType' => {
-# #       '@id' => '1',
-# #       '@uri' => 'https://mortarstone.fellowshiponeapi.com/v1/People/HouseholdMemberTypes/1',
-# #       'name' => 'Head'
-# #   },
-# #   'status' => {
-# #       '@id' => '1',
-# #       '@uri' => '',
-# #       'name' => nil,
-# #       'comment' => nil,
-# #       'date' => nil,
-# #       'subStatus' => {
-# #           '@id' => '',
-# #           '@uri' => '',
-# #           'name' => nil
-# #       }
-# #   },
-# #   'lastName' => 'Hays'
-# # })
-# person.save_object
-
-
 household = FellowshipOne::Household.new
-household.household_name = 'Test 2'
+household.household_name = 'Test 8'
 attrs = household.to_attributes
-debugger
-asdf=234
-#household.save
-
+household.save
 
 # person = FellowshipOne::Person.new
-# person.household_id = 35154894
-# person.household_member_type['@id'] = 1
-# person.status['@id'] = 1
+# person.household_id = household.id.to_i
+# person.id = nil
+# #person.household_member_type['@id'] = 1
+# #person.status['@id'] = 1
 # person.first_name = 'Wes'
 # person.last_name = 'Hays'
-# debugger
-# asdf=111
+
+# person.save
+
+
+# Need a fund to give to. The church should select an *active* fund when they
+# create an account so you do not have to do the following.
+fund_list = FellowshipOne::FundList.new
+active_funds = fund_list.collect { |f| f.is_active ? f : nil }.compact
+general_funds = active_funds.collect { |f| (f.name.downcase.include?('tithe') or f.name.downcase.include?('general')) ? f : nil }.compact
+fund_to_use = if general_funds.empty?
+  active_funds.detect { |f| f.fund_type['name'].downcase == 'contribution'}
+else
+  general_funds.first
+end
+raise 'Fund to give to not found' if fund_to_use.nil?
+
+# Do a periodic check to see if fund is still active.
+# fund = fund_list = FellowshipOne::FundList.load_by_id(SOME_FUND_ID)
+# unless fund.is_active
+#   # notify church fund is not active
+# end
+
 
 ## Add donation to household
-
+contribution = FellowshipOne::Contribution.new
+contribution.amount = '399.00'
+contribution.fund['@id'] = fund_to_use.id
+contribution.household['@id'] = household.id.to_i
+contribution.received_date = Date.today.to_s
+contribution.save
 
