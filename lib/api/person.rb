@@ -66,11 +66,13 @@ module FellowshipOne
     # @param options (optional) Options for including more information.
     def initialize(reader = nil, options = {})    
       @writer_object = PersonWriter
-
       if reader.is_a?(PersonReader)
         initialize_from_json_object(reader.load_feed['person'])
       elsif reader.is_a?(Hash)
         initialize_from_json_object(reader)
+      else # new 
+        reader = PersonReader.new
+        initialize_from_json_object(reader.load_new['person'])
       end         
     end
 

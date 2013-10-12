@@ -17,47 +17,46 @@ module FellowshipOne
 
       @url_data_params = {'person' => data}
 
-      @updatable_fields = []
-      # @updatable_fields = [:title,
-      #                      :salutation,
-      #                      :prefix,
-      #                      :first_name, #required
-      #                      :last_name,  #required
-      #                      :suffix,
-      #                      :middle_name,
-      #                      :goes_by_name,
-      #                      :former_name,
-      #                      :gender,
-      #                      :date_of_birth,
-      #                      :marital_status,
-      #                      :household_member_type, #required
-      #                      :is_authorized,
-      #                      :status, #required
-      #                      :occupation,
-      #                      :employer,
-      #                      :school,
-      #                      :denomination,
-      #                      :former_church,
-      #                      :bar_code,
-      #                      :member_envelope_code,
-      #                      :default_tag_comment,
-      #                      :weblink,
-      #                      :solicit,
-      #                      :thank,
-      #                      :first_record,
-      #                      :last_match_date,
-      #                      :created_date,
-      #                      :last_updated_date,
-      #                      :id,
-      #                      :uri,
-      #                      :image_uri,
-      #                      :old_id,
-      #                      :i_code,
-      #                      :household_id,
-      #                      :old_household_id,
-      #                      :attributes,
-      #                      :addresses,
-      #                      :communications]
+      @updatable_fields = [:title,
+                           :salutation,
+                           :prefix,
+                           :first_name, 
+                           :last_name,  #required
+                           :suffix,
+                           :middle_name,
+                           :goes_by_name,
+                           :former_name,
+                           :gender,
+                           :date_of_birth,
+                           :marital_status,
+                           :household_member_type, #required
+                           :is_authorized,
+                           :status, #required
+                           :occupation,
+                           :employer,
+                           :school,
+                           :denomination,
+                           :former_church,
+                           :bar_code,
+                           :member_envelope_code,
+                           :default_tag_comment,
+                           :weblink,
+                           :solicit,
+                           :thank,
+                           :first_record,
+                           :last_match_date,
+                           :created_date,
+                           :last_updated_date,
+                           :id,
+                           :uri,
+                           :image_uri,
+                           :old_id,
+                           :i_code,
+                           :household_id, #required
+                           :old_household_id,
+                           :attributes,
+                           :addresses,
+                           :communications]
     end
     
   end
