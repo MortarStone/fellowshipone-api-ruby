@@ -1,5 +1,6 @@
 module FellowshipOne
   require 'json'
+  require 'time'
 
   def self.api_request(method, path, params = {}, body = '')
     # response = case method
@@ -33,7 +34,6 @@ module FellowshipOne
     
     response
   end
-
 
   def self._oauth_request_get(method, path, params, body)
     consumer_env = FellowshipOne::Api.is_production ? '' : '.staging'

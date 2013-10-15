@@ -8,8 +8,8 @@ module FellowshipOne
       ContributionList.new({:reader => reader})
     end
 
-    def self.search_for_person_by_name(name, page=1)
-      options = {:page => page, :search_for => name}
+    def self.search_for_person_by_query(query, page=1)
+      options = {:page => page, :search_for => query}
       reader = FellowshipOne::PersonListReader.new(options)
       PersonList.new({:reader => reader})
     end

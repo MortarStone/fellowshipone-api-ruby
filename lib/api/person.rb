@@ -6,11 +6,21 @@ module FellowshipOne
   PersonCommunication = Struct.new(:is_phone?, :is_mobile?, :is_email?, :type, :value, :preferred?)
 
   class Person < ApiObject
-    f1_attr_accessor :title,
+    attr_accessor :addresses,
+                  :communications
+
+    f1_attr_accessor :id,
+                     :uri,
+                     :image_uri,
+                     :old_id,
+                     :i_code,
+                     :household_id,
+                     :old_household_id,
+                     :title,
                      :salutation,
                      :prefix,
-                     :first_name, #required
-                     :last_name,  #required
+                     :first_name,
+                     :last_name,
                      :suffix,
                      :middle_name,
                      :goes_by_name,
@@ -18,9 +28,9 @@ module FellowshipOne
                      :gender,
                      :date_of_birth,
                      :marital_status,
-                     :household_member_type, #required
+                     :household_member_type,
                      :is_authorized,
-                     :status, #required
+                     :status,
                      :occupation,
                      :employer,
                      :school,
@@ -35,17 +45,7 @@ module FellowshipOne
                      :first_record,
                      :last_match_date,
                      :created_date,
-                     :last_updated_date,
-                     :id,
-                     :uri,
-                     :image_uri,
-                     :old_id,
-                     :i_code,
-                     :household_id,
-                     :old_household_id,
-                     :attributes,
-                     :addresses,
-                     :communications
+                     :last_updated_date
 
     # Loads the user by the specified ID.
     #
