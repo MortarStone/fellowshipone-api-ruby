@@ -21,7 +21,7 @@ module FellowshipOne
     #
     # Returns a new Communication object.
     def self.load_by_id(communication_id)
-      reader = CommunicationReader.new(communication_id)
+      reader = CommunicationReader.new(nil, communication_id)
       self.new(reader)
     end
 
@@ -36,7 +36,7 @@ module FellowshipOne
       elsif reader.is_a?(Hash)
         initialize_from_json_object(reader)
       else # new 
-        reader = CommunicationReader.new(person_id)
+        reader = CommunicationReader.new(person_id, nil)
         initialize_from_json_object(reader.load_new['communication'])        
       end   
     end

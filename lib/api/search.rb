@@ -8,11 +8,17 @@ module FellowshipOne
       ContributionList.new({:reader => reader})
     end
 
-    def self.search_for_person_by_query(query, page=1)
+    def self.search_for_person_by_name(query, page=1)
       options = {:page => page, :search_for => query}
       reader = FellowshipOne::PersonListReader.new(options)
       PersonList.new({:reader => reader})
     end
+
+    def self.search_for_person_by_communication(query, page=1)
+      options = {:page => page, :communication => query}
+      reader = FellowshipOne::PersonListReader.new(options)
+      PersonList.new({:reader => reader})
+    end    
 
     def self.search_for_person_created_on_or_after(created_date, page=1)
       options = {:page => page, :created_date => created_date}

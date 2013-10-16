@@ -118,6 +118,21 @@ module FellowshipOne
       @addresses_cache
     end
 
+    def email_addresses
+      self.communications.collect { |c| c[:is_email?] ? c[:value] : nil }.compact
+    end
+
+    def all_numbers
+      self.communications.collect { |c| (c[:is_phone?] or c[:is_mobile?]) ? c[:value] : nil }.compact
+    end  
+
+    def phone_numbers
+      self.communications.collect { |c| c[:is_phone?] ? c[:value] : nil }.compact
+    end  
+
+    def mobile_numbers
+      self.communications.collect { |c| c[:is_mobile?] ? c[:value] : nil }.compact
+    end  
 
     def communications
       return nil if @communications.nil?
