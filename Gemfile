@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'typhoeus', '0.5.1'
 gem 'json'
-gem 'oauth_weshays'
+gem 'oauth_weshays', '0.4.8.pre2'
 
 group :development, :test do
   gem 'rspec'

@@ -30,7 +30,7 @@ GEM
     mime-types (1.23)
     minitest (4.7.5)
     multi_json (1.7.7)
-    oauth_weshays (0.4.8.pre)
+    oauth_weshays (0.4.8.pre2)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -57,7 +57,7 @@ DEPENDENCIES
   debugger
   factory_girl
   json
-  oauth_weshays
+  oauth_weshays (= 0.4.8.pre2)
   rspec
   typhoeus (= 0.5.1)
   vcr
