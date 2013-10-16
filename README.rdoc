@@ -36,6 +36,7 @@ This project is maintained by Wes Hays (https://github.com/weshays).
 == Contributors
 
 Chad Feller: https://github.com/cfeller
+Taylor Brooks: https://github.com/taylorbrooks
 
 
 == Want to Contribute?
