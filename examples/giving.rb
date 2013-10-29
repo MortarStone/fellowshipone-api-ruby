@@ -70,13 +70,12 @@ raise 'Fund to give to not found' if fund_to_use.nil?
 #   # notify church fund is not active
 # end
 
-
 # Add donation to household
 contribution = FellowshipOne::Contribution.new
 contribution.id = '' # Needs to blank and not nil
-contribution.amount = '124.00'
+contribution.amount = '943.00'
 contribution.fund['@id'] = fund_to_use.id
-contribution.household['@id'] = person.household_id
+contribution.household['@id'] = person.household_id 
 contribution.received_date = Time.now.utc.iso8601 # Needs to be this format
 contribution.contribution_type['@id'] = 3 # Credit Card
 contribution.address_verification = false
