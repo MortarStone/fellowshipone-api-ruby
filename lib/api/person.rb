@@ -84,7 +84,7 @@ module FellowshipOne
 
     def family_role
       begin
-        person.household_member_type['name']
+        self.household_member_type['name']
       rescue
         'Other'
       end
@@ -93,7 +93,7 @@ module FellowshipOne
 
     def is_child?
       begin
-        person.household_member_type['name'].downcase == 'child'
+        self.household_member_type['name'].downcase == 'child'
       rescue
         false
       end
