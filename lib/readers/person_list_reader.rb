@@ -17,7 +17,10 @@ module FellowshipOne
 
       @url_data_params = {}
       @url_data_path = '/v1/People/Search'
-      if options[:search_for].nil? and options[:communication].nil? and options[:created_date].nil? 
+      if options[:search_for].nil? and 
+         options[:communication].nil? and 
+         options[:created_date].nil? and 
+         options[:hsdid].nil?
         @url_data_path = '/v1/People'
       end
 

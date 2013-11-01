@@ -14,7 +14,7 @@ module FellowshipOne
       PersonList.new({:reader => reader})
     end
 
-    def self.search_for_person_by_hsdid(query, page=1)
+    def self.search_for_person_by_household_id(query, page=1)
       options = {:page => page, :hsdid => query}
       reader = FellowshipOne::PersonListReader.new(options)
       PersonList.new({:reader => reader})

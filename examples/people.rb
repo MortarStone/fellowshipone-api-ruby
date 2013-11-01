@@ -18,8 +18,11 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
                            F1Keys::OAUTH_SECRET, 
                            F1Keys::IS_PRODUCTION)
 
+people = FellowshipOne::Search.search_for_person_by_household_id("33671710")
+
+
 # looks up person with ID # 53835429
-# person = FellowshipOne::Person.load_by_id(53835429)
+person = FellowshipOne::Person.load_by_id(53835429)
 
 puts "--- After person.inspect ---"
 puts person.inspect
@@ -37,7 +40,7 @@ puts "--- After mpl.merge(person_list_2) ---"
 puts mpl.names
 puts 
 
-loads every person on F1
+# loads every person on F1
 mpl_2 = FellowshipOne::MergeablePersonList.load_all("aa","az")
 puts '--- After MergeablePersonList.load_all("aa","az") ---'
 puts mpl_2.inspect
