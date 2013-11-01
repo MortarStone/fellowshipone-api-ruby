@@ -14,6 +14,12 @@ module FellowshipOne
       PersonList.new({:reader => reader})
     end
 
+    def self.search_for_person_by_hsdid(query, page=1)
+      options = {:page => page, :hsdid => query}
+      reader = FellowshipOne::PersonListReader.new(options)
+      PersonList.new({:reader => reader})
+    end        
+
     def self.search_for_person_by_communication(query, page=1)
       options = {:page => page, :communication => query}
       reader = FellowshipOne::PersonListReader.new(options)
