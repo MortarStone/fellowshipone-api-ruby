@@ -141,12 +141,12 @@ module FellowshipOne
       @communications_cache = []
       @communications['communication'].each do |comm|
         @communications_cache << PersonCommunication.new(
-          comm['communicationType']['name'].downcase.include?('phone'), 
-          comm['communicationType']['name'].downcase.include?('mobile'), 
-          comm['communicationType']['name'].downcase.include?('email'), 
+          comm['communicationType']['name'].to_s.downcase.include?('phone'), 
+          comm['communicationType']['name'].to_s.downcase.include?('mobile'), 
+          comm['communicationType']['name'].to_s.downcase.include?('email'), 
           comm['communicationType']['name'], 
           comm['communicationValue'],
-          comm['preferred'].downcase == 'true'
+          comm['preferred'].to_s.downcase == 'true'
         )
       end    
       @communications_cache      
