@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   PROJECT_GEM = 'fellowshipone-api'
-  PROJECT_GEM_VERSION = '0.4.2'
+  PROJECT_GEM_VERSION = '0.4.3'
   
   s.name = PROJECT_GEM
   s.version = PROJECT_GEM_VERSION
