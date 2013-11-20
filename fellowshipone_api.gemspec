@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   PROJECT_GEM = 'fellowshipone-api'
-  PROJECT_GEM_VERSION = '0.4.3'
+  PROJECT_GEM_VERSION = '0.5.0'
   
   s.name = PROJECT_GEM
   s.version = PROJECT_GEM_VERSION
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.summary = 'Ruby gem/plugin to interact with the FellowshipOne API (https://developer.fellowshipone.com/).'
   s.description = 'Ruby gem/plugin to interact with the FellowshipOne API (https://developer.fellowshipone.com/). Checkout the project on github for more detail.'
 
-  s.add_dependency('typhoeus', '0.5.1')
+  s.add_dependency('typhoeus', '0.6.6')
   s.add_dependency('oauth_weshays', '0.4.8.pre2')
 
 
