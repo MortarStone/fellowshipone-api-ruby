@@ -8,6 +8,18 @@ module FellowshipOne
       ContributionList.new({:reader => reader})
     end
 
+    def self.search_for_contributions_by_household_id(household_id, page=1, per_page=500)
+      options = {:household_id => household_id, :page => page, :per_page => per_page}
+      reader = FellowshipOne::ContributionListReader.new(options)
+      ContributionList.new({:reader => reader})
+    end    
+
+    def self.search_for_contributions_by_individual_id(individual_id, page=1, per_page=500)
+      options = {:individual_id => individual_id, :page => page, :per_page => per_page}
+      reader = FellowshipOne::ContributionListReader.new(options)
+      ContributionList.new({:reader => reader})
+    end        
+
     def self.search_for_person_by_name(query, page=1)
       options = {:page => page, :search_for => query}
       reader = FellowshipOne::PersonListReader.new(options)
