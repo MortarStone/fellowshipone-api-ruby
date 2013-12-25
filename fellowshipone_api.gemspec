@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency('oauth_weshays', '0.4.8.pre2')
 
 
-  s.files         = `git ls-files`.split("\n")
+  s.files         = `git ls-files`.split("\n").delete_if { |f| !(f =~ /^examples/).nil? }
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
