@@ -20,7 +20,7 @@ module FellowshipOne
       if options[:household_id].nil? and
          options[:individual_id].nil? and 
          options[:start_date].nil? and 
-         options[:end_date].nil? and 
+         options[:end_date].nil? 
         @url_data_path = '/giving/v1/contributionreceipts'
       end
             
