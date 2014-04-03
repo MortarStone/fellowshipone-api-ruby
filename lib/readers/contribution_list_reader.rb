@@ -21,7 +21,7 @@ module FellowshipOne
          options[:individual_id].nil? and 
          options[:start_date].nil? and 
          options[:end_date].nil? 
-        @url_data_path = '/giving/v1/contributionreceipts'
+          @url_data_path = '/giving/v1/contributionreceipts'
       end
             
       @url_data_params.merge!({:page => page}) if page
