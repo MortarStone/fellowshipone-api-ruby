@@ -17,10 +17,17 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
                            F1Keys::IS_PRODUCTION)
 
 fund_list = FellowshipOne::FundList.new
+fund_list.each do |fund|
+  puts fund.name
+  subfund_list = FellowshipOne::SubFundList.new(fund.id)
+  subfund_list.each do |subfund|
+    puts "--- #{subfund.name}"
+  end
+end
 
-puts '*****************'
-puts fund_list.inspect
-puts '*****************'
-puts '*****************'
+# puts '*****************'
+# puts fund_list.inspect
+# puts '*****************'
+# puts '*****************'
 
 #fund = FellowshipOne::Fund.load_by_id(185175)

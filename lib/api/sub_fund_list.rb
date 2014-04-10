@@ -18,6 +18,7 @@ module FellowshipOne
     def initialize(fund_id, options = {})
       reader = options[:reader] || FellowshipOne::SubFundListReader.new(fund_id, options)
       @json_data = reader.load_feed
+      @json_data['subFunds'] = {'subFund' => []} if reader.load_feed["subFunds"].nil?    
       @count = @json_data['subFunds']['subFund'].size.to_i
       @page_number = 1
       @total_records = @count
@@ -30,7 +31,7 @@ module FellowshipOne
     #
     # @return Fund
     def [](index)
-      Fund.new( @json_data['funds']['fund'][index] ) if @json_data['funds']['fund'][index]
+      Fund.new( @json_data['subFunds']['subFund'][index] ) if @json_data['subFunds']['subFund'][index]
     end
 
 
