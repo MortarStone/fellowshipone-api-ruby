@@ -65,6 +65,10 @@ module FellowshipOne
     def fund_id
       self.fund['@id']
     end
+
+    def sub_fund_id
+      self.sub_fund['@id']
+    end    
     
     def household_id
     	self.household['@id']
