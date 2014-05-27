@@ -153,6 +153,24 @@ module FellowshipOne
     end
 
 
+    def status_name
+      self.status['name']
+    end
+
+    def status_date
+      self.status['date']
+    end
+
+    def status_comment
+      self.status['date']
+    end    
+
+    def substatus_name
+      self.status['subStatus']['name']
+    end
+
+
+
     def _field_map
       {:id => '@id',
        :uri => '@uri',
