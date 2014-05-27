@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   PROJECT_GEM = 'fellowshipone-api'
-  PROJECT_GEM_VERSION = '0.6.4'
+  PROJECT_GEM_VERSION = '0.7.0'
   
   s.name = PROJECT_GEM
   s.version = PROJECT_GEM_VERSION
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
 
   s.homepage = 'https://github.com/weshays/fellowshipone-api-ruby'
   s.rubyforge_project = 'Project on www.github.com'
-  s.authors = ['Wes Hays', 'Chad Feller']
+  s.authors = ['Wes Hays', 'Chad Feller', 'Taylor Brooks']
   s.email = ['weshays@gbdev.com','feller@cs.unr.edu']
 
   s.summary = 'Ruby gem/plugin to interact with the FellowshipOne API (https://developer.fellowshipone.com/).'
