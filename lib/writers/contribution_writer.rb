@@ -20,7 +20,8 @@ module FellowshipOne
       @updatable_fields = [:amount,
                            :fund,              #required
                            :received_date,     #required
-                           :contribution_type] #required
+                           :contribution_type, #required
+                           :memo] 
     end
     
   end
