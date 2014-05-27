@@ -162,7 +162,7 @@ module FellowshipOne
     end
 
     def status_comment
-      self.status['date']
+      self.status['comment']
     end    
 
     def substatus_name
