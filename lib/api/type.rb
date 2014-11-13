@@ -29,9 +29,12 @@ module FellowshipOne
     end
 
 
-    def type_group
-      @type_group_cache ||= TypeGroup.load_by_id( self.typegroup['id'] )
+    def typegroup
+      @type_group_cache ||= TypeGroup.load_by_id( @typegroup['id'] )
     end
+
+    # Alias the typegroup method
+    alias :type_group :typegroup
 
   end
 
