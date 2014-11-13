@@ -16,7 +16,7 @@ FellowshipOne::Api.connect(F1Keys::CHURCH_CODE,
                            F1Keys::OAUTH_SECRET, 
                            F1Keys::IS_PRODUCTION)
 
-activity_list = FellowshipOne::ActivityList.new
-activity_list.each do |activity|
-  puts [activity.name, activity.description].join(' :: ')
+list = FellowshipOne::ActivityList.new
+list.each do |item|
+  puts [item.name, item.description].join(' :: ')
 end
