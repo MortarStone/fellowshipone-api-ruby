@@ -22,11 +22,15 @@ module FellowshipOne
 
     private
 
-    def _load_data(url_data_path, url_data_params)
+    def _load_data(url_data_path, url_data_params)        
       response = FellowshipOne::api_request(:get, url_data_path, url_data_params)
       data = JSON.parse(response.body)
       @headers = response.headers
-      return data.keys == ['results'] ? data['results'] : data
+      if data.class == Array
+        return data
+      else
+        return data.keys == ['results'] ? data['results'] : data
+      end
     end
 
   end
