@@ -1,41 +1,45 @@
 module FellowshipOne
 
-  class Attendance < ApiObject
+  class Assignment < ApiObject
 
     f1_attr_accessor :id,
                      :uri,
+                     :type,
                      :person,
                      :activity,
-                     :instance,
+                     :schedule,
                      :roster,
-                     :type,
-                     :checkin,
-                     :checkout,
+                     :roster_folder,
                      :created_date,
                      :created_by_person,
                      :last_updated_date,
                      :last_updated_by_person
 
-    # Load the attendance by the specified ID.
+    # Load the assignment by the specified ID.
     #
-    # @param attendance_id The ID of the attendance to load.
+    # @param assignment_id The ID of the assignment to load.
     #
-    # Returns a new Attendance object.
-    def self.load_by_id(attendance_id)
-      reader = AttendanceReader.new(attendance_id)
+    # Returns a new Assignment object.
+    def self.load_by_id(assignment_id)
+      reader = AssignmentReader.new(assignment_id)
       self.new(reader)
     end
 
     # Constructor.
     #
-    # @param reader (optional) The object that has the data. This can be a AttendanceReader or Hash object.
+    # @param reader (optional) The object that has the data. This can be a AssignmentReader or Hash object.
     def initialize(reader = nil)
-      if reader.is_a?(AttendanceReader)    
+      if reader.is_a?(AssignmentReader)    
         initialize_from_json_object(reader.load_feed)
       elsif reader.is_a?(Hash)        
         initialize_from_json_object(reader)
       end
     end
+   
+
+    def type  
+      @type_cache ||= Type.load_by_id( @roster['id'] )
+    end 
 
     def person_id
       @person['id']
@@ -49,17 +53,18 @@ module FellowshipOne
       @activity_cache ||= Activity.load_by_id( @activity['id'] )
     end
 
-    def instance  
-      @instance_cache ||= ActivityInstance.load_by_id( @instance['id'] )
+    def schedule  
+      @schedule_cache ||= Schedule.load_by_id( @schedule['id'] )
     end
 
     def roster  
-      @roster_cache ||= Roster.load_by_id( @roster['id'] )
-    end    
-
-    def type  
-      @type_cache ||= Type.load_by_id( @roster['id'] )
+      @roster_folder_cache ||= Roster.load_by_id( @roster['id'] )
     end 
+
+    def roster_folder
+      @roster_folder_cache ||= RosterFolder.load_by_id( @roster_folder['id'] )
+    end    
+    alias :rosterfolder :roster_folder
 
     def created_by_person  
       @created_by_person_cache ||= Person.load_by_id( @created_by_person['id'] )
