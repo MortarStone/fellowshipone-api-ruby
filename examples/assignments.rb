@@ -2,7 +2,7 @@
 # This is a demo file to show usage.
 #
 # @package FellowshipOneAPI
-# @authors Wes Hays <wes@gbdev.com>
+# @authors Wes Hays <weshays@gbdev.com>
 # ******************************************* 
 
 require File.dirname(__FILE__) + '/../lib/fellowship_one.rb'
