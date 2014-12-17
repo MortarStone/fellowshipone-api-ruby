@@ -20,6 +20,7 @@ module FellowshipOne
       if options[:search_for].nil? and 
          options[:communication].nil? and 
          options[:created_date].nil? and 
+         options[:updated_date].nil? and 
          options[:hsdid].nil?
         @url_data_path = '/v1/People'
       end
@@ -30,6 +31,7 @@ module FellowshipOne
       @url_data_params.merge!({:searchFor => options[:search_for]}) if options[:search_for]
       @url_data_params.merge!({:communication => options[:communication]}) if options[:communication]
       @url_data_params.merge!({:createdDate => options[:created_date]}) if options[:created_date]
+      @url_data_params.merge!({:lastUpdatedDate => options[:updated_date]}) if options[:updated_date]
     end
 
   end
