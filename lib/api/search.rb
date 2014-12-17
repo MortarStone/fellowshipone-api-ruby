@@ -44,6 +44,12 @@ module FellowshipOne
       PersonList.new({:reader => reader})
     end    
 
+    def self.search_for_person_updated_on_or_after(updated_date, page=1)
+      options = {:page => page, :updated_date => updated_date}
+      reader = FellowshipOne::PersonListReader.new(options)
+      PersonList.new({:reader => reader})
+    end        
+
     def self.search_for_household_by_name(name, page=1)
       options = {:page => page, :search_for => name}
       reader = FellowshipOne::HouseholdListReader.new(options)
