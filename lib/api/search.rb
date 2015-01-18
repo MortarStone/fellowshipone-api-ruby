@@ -12,16 +12,22 @@ module FellowshipOne
       options = {:household_id => household_id, :page => page, :per_page => per_page}
       reader = FellowshipOne::ContributionListReader.new(options)
       ContributionList.new({:reader => reader})
-    end    
+    end
 
     def self.search_for_contributions_by_individual_id(individual_id, page=1, per_page=500)
       options = {:individual_id => individual_id, :page => page, :per_page => per_page}
       reader = FellowshipOne::ContributionListReader.new(options)
       ContributionList.new({:reader => reader})
-    end        
+    end
 
     def self.search_for_person_by_name(query, page=1)
       options = {:page => page, :search_for => query}
+      reader = FellowshipOne::PersonListReader.new(options)
+      PersonList.new({:reader => reader})
+    end
+
+    def self.search_for_person_by_name_and_email(name, email, page=1)
+      options = {:page => page, :search_for => name, :communication => email}
       reader = FellowshipOne::PersonListReader.new(options)
       PersonList.new({:reader => reader})
     end
@@ -30,25 +36,25 @@ module FellowshipOne
       options = {:page => page, :hsdid => query}
       reader = FellowshipOne::PersonListReader.new(options)
       PersonList.new({:reader => reader})
-    end        
+    end
 
     def self.search_for_person_by_communication(query, page=1)
       options = {:page => page, :communication => query}
       reader = FellowshipOne::PersonListReader.new(options)
       PersonList.new({:reader => reader})
-    end    
+    end
 
     def self.search_for_person_created_on_or_after(created_date, page=1)
       options = {:page => page, :created_date => created_date}
       reader = FellowshipOne::PersonListReader.new(options)
       PersonList.new({:reader => reader})
-    end    
+    end
 
     def self.search_for_person_updated_on_or_after(updated_date, page=1)
       options = {:page => page, :updated_date => updated_date}
       reader = FellowshipOne::PersonListReader.new(options)
       PersonList.new({:reader => reader})
-    end        
+    end
 
     def self.search_for_household_by_name(name, page=1)
       options = {:page => page, :search_for => name}
